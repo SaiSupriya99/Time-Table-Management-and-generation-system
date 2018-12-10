@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load static %}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>A13 Frontend</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+    <div class="container">
+      <a href="{% url 'home'%}" class="navbar-brand"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/IIIT_Sri_City_Logo.png/220px-IIIT_Sri_City_Logo.png" style="width: 32px; height: 32px; margin-right: 8px;">IIIT Sricity</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav">
+          <li class="nav-item px-2">
+            <a href="{% url 'schedule'%}" class="nav-link">Schedule Faculty meetings</a>
+          </li>
+          <li class="nav-item px-2">
+            <a href="{% url 'scheduleEvents'%}" class="nav-link">Schedule Events</a>
+          </li>
+          <li class="nav-item px-2">
+            <a href="{% url 'timetableg'%}" class="nav-link active">Timetable Generation</a>
+          <!--</li>
+          <li class="nav-item px-2">
+            <a href="users.html" class="nav-link">Users</a>-->
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link">
+              <i class="fas fa-user-times"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header id="main-header" class="py-2 bg-success text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>
+            <i class="fas fa-user"></i> Admin</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEARCH -->
+  <!--<section id="search" class="py-4 mb-4 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 ml-auto">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Categories...">
+            <div class="input-group-append">
+              <button class="btn btn-success">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>-->
+  <!-- ACTIONS -->
+  <section id="actions" class="py-4 mb-4 bg-light">
+    <div class="container">
+      
+        <div>
+          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#classtimetableModal">
+             Class Timetable
+          </a>
+        </div><br>
+        <div>
+          <a href="#" class="btn btn-success" data-toggle="modal" data-target="#examtimetableModal">
+            Exam Timetable
+          </a>
+        </div>
+        
+      
+    </div>
+  </section>
+<!-- FOOTER -->
+  <footer id="main-footer" class="bg-dark text-white mt-5 p-5">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class="lead text-center">
+            Copyright &copy;
+            <span id="year"></span>
+            IIIT Sricity
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <section>
+  <div class="modal fade" id="classtimetableModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Class Timetable</h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+           <!-- <div class="form-group">
+              <label for="image">Upload Image</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="image">
+                <label for="image" class="custom-file-label">Choose File</label>
+              </div>
+              <small class="form-text text-muted">Max Size 3mb</small>
+            </div>-->
+           <!-- <div class="form-group">
+              <label for="body">Body</label>
+              <textarea name="editor1" class="form-control"></textarea>
+            </div>
+          </form>
+        </div>-->
+
+    <div class="container" style="width:750px">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <h4>Class Timetable</h4>
+            </div>
+	    <font size="2">
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Sl.no</th>
+                  <th>Time</th>
+                 <th> MON</th>
+                  <th>TUE</th>
+                  <th>WED</th><th>THU</th><th>FRI</th><th>SAT</th>
+                    <th></th>
+                  </tr>
+              </thead>
+	      </font>
+              
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>9:00-10:00 </td>
+                  <td>DM-201-PV</td><td>CSD-103-HVR</td><td>IOT-203-RVP</td><td>DIGICOMM-Tut-201(KC)<br>TOC-101-PV</td><td>VLSI-203-PB<br>DM-201-PV</td><td>ITS-103-UG&CS  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                   </tr>
+                <tr>
+                  <td>2</td>
+                  <td>10:00-11:00</td>
+                  <td>IOT-203-RVP</td><td>MERS-201-DB</td><td>EMT-203-DB</td><td>MERS-203-DB</td><td>MERS-203-DB</td><td>ITS-103-UG&CS</td>
+                  </tr>
+                <tr>
+                  <td>3</td>
+                  <td>11:00-11:15</td>
+                  <td>Short break</td>
+                  <td></td> <td></td> <td></td> <td></td> <td></td> 
+                  
+                </tr>
+                <tr>
+                  <td>4</td>
+             <td>11:15-12:15</td>
+                  <td>DIGICOMM-201-KC</td><td>SDS-103-MT<br>DE-101-SK</td><td>DM-201-PV<br>VLSI-203-PB</td><td>EMT-203-DB</td><td>ITS-221-sec-A-UG&CS</td><td>ITS-103-UG&CS<br>FA-115-PG</td> </tr>
+ 
+                  <!--<td>
+                    <a href="details.html" class="btn btn-secondary">
+                      <i class="fas fa-angle-double-right"></i> Details
+                    </a>
+                  </td>-->
+               
+                  <tr>
+                  <td>5</td>
+                  <td>12:15-01:15</td>
+                  <td>IR-101-VVR</td><td>TOC-113-PV<br>DIGICOMM-201-KC</td><td>IOT-203-RVP</td><td>SDS-103-MT<br>DE-101-SK</td><td>ITS-sec-B-221-UG&CS</td><td>ITS-103-UG&CS<br>FA-115-PG</td>
+                  </tr>
+
+
+              </tbody>
+
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ADD CATEGORY MODAL -->
+  <div class="modal fade" id="examtimetableModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">Exam Timetable</h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container" style="width:750px">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <h4>Exam Timetable</h4>
+            </div>
+	    <font size="2">
+            <table class="table table-striped">
+              <thead class="thead-dark" >
+                <tr>
+                  <th>Sl.no</th>
+                  <th>Time</th>
+                 <th> MON</th>
+                  <th>TUE</th>
+                  <th>WED</th><th>THU</th><th>FRI</th><th>SAT</th>
+                    <th></th>
+                  </tr>
+              </thead>
+	      </font>
+              
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>9:00-10:00 </td>
+                  <td>DM-201-PV</td><td>CSD-103-HVR</td><td>IOT-203-RVP</td><td>DIGICOMM-Tut-201(KC)<br>TOC-101-PV</td><td>VLSI-203-PB<br>DM-201-PV</td><td>ITS-103-UG&CS  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                   </tr>
+                <tr>
+                  <td>2</td>
+                  <td>10:00-11:00</td>
+                  <td>IOT-203-RVP</td><td>MERS-201-DB</td><td>EMT-203-DB</td><td>MERS-203-DB</td><td>MERS-203-DB</td><td>ITS-103-UG&CS</td>
+                  </tr>
+                <tr>
+                  <td>3</td>
+                  <td>11:00-11:15</td>
+                  <td>Short break</td>
+                  <td></td> <td></td> <td></td> <td></td> <td></td> 
+                  
+                </tr>
+                <tr>
+                  <td>4</td>
+             <td>11:15-12:15</td>
+                  <td>DIGICOMM-201-KC</td><td>SDS-103-MT<br>DE-101-SK</td><td>DM-201-PV<br>VLSI-203-PB</td><td>EMT-203-DB</td><td>ITS-221-sec-A-UG&CS</td><td>ITS-103-UG&CS<br>FA-115-PG</td> </tr>
+ 
+                
+               
+                  <tr>
+                  <td>5</td>
+                  <td>12:15-01:15</td>
+                  <td>IR-101-VVR</td><td>TOC-113-PV<br>DIGICOMM-201-KC</td><td>IOT-203-RVP</td><td>SDS-103-MT<br>DE-101-SK</td><td>ITS-sec-B-221-UG&CS</td><td>ITS-103-UG&CS<br>FA-115-PG</td>
+                  </tr>
+
+
+              </tbody>
+
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+
+  <script>
+    // Get the current year for the copyright
+    $('#year').text(new Date().getFullYear());
+  </script>
+</body>
+
+</html>
++
